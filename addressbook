@@ -1,0 +1,34 @@
+#! /usr/bin/python3
+import os
+import time
+print("This is an example of addressbook which can be used to store data like phonenumber, placestovisit, thingstolearn !")
+print("what you want to do ?")
+print("'a' for writing a record")
+time.sleep(3)
+print("'ap' for appending to a record")
+time.sleep(2)
+print("'d' for deleting a record")
+userinput=input("Enter your decision:")
+if userinput=="a":
+    with open ("file.cap","w") as file:
+        print("The saved data in a file can be found at file.cap")
+        numberofinputs=int(input("How many records you want to write:"))
+        for i in range(0, numberofinputs):
+            thingstowrite=input(f"Enter the message-{i+1} to a file:")
+            file.write(f"{i+1}   {thingstowrite}    ")
+      
+if userinput=="ap":
+    with open ("file.cap","a") as file:
+        numberofinputs=int(input("How many records you want to add:"))
+        for i in range(0, numberofinputs):
+            thingstowrite=input(f"Enter the messages-{i+1} to a file:")
+            file.write(f"{i+1}{thingstowrite}")
+    with open("file.cap","r") as file :
+       content=file.read()
+       print(content)
+
+elif userinput == "d":
+    os.remove('file.cap')
+
+else:
+    print("Invalid option selected.")
