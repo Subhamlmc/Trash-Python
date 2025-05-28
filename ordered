@@ -1,0 +1,7 @@
+#! /usr/bin/python3
+from collections import OrderedDict
+
+favourite_colour=OrderedDict([("ram",198 ),("shyam",199),("Hari",197)])
+for key,value in favourite_colour.items():
+    print(key,value) 
+
