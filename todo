@@ -1,0 +1,69 @@
+#!/usr/bin/python3
+import time
+import os
+
+print("\033[94mThis is an authenticated to-do simulator where you can manage your tasks.\033[0m")
+time.sleep(2)
+print("\033[96mPlease wait !! The interface is loading !!\033[0m")
+time.sleep(2)
+
+# Asking user to input their choice
+print('"A/a" for creating tasks')
+print('"D/d" for deleting tasks')
+print('"M/m" for marking a task as done')
+userinput = input("\033[93mEnter your choice :\033[0m").lower()
+
+# Create tasks
+if userinput == "a":
+    askfilename = input("Enter what you want to save this task as: ")
+    with open(askfilename, "w") as file:
+        tasks = []
+        ask = int(input("Enter the number of tasks you want to add: "))
+        for i in range(ask):
+            task = input(f"Enter task {i+1}: ")
+            tasks.append(task)
+        for i, task in enumerate(tasks):
+            file.write(f"{i}) {task}\n")
+    time.sleep(2)
+    print("Tasks have been added to your list.")
+
+# Mark tasks as done
+elif userinput == "m":
+    useraskfilename = input("Enter the name of the task file: ")
+    if not os.path.exists(useraskfilename):
+        print("Task doesn't exist! Enter a valid filename.")
+    else:
+        with open(useraskfilename, "r") as file:
+            content = file.read()
+            print("Current tasks:\n" + content)
+
+        print("-------------------")
+        with open(useraskfilename, "a") as file:
+            done_tasks = []
+            ask = int(input("Enter the number of tasks you want to mark as done: "))
+            for i in range(ask):
+                task = input(f"Enter task {i+1} to mark as done: ")
+                done_tasks.append(task)
+            for i, task in enumerate(done_tasks):
+                file.write(f"{i}) {task} [DONE]\n")
+        time.sleep(2)
+        print("Tasks have been marked as done.")
+
+        time.sleep(2)
+        with open(useraskfilename, "r") as file:
+            content = file.read()
+            print("\nUpdated Task List:\n" + content)
+
+# Delete task file
+elif userinput == "d":
+    askint = input("Enter the filename of the task list you want to delete: ")
+    if not os.path.exists(askint):
+        print("Enter a valid filename.")
+    else:
+        os.remove(askint)
+        print("The file containing your task list has been deleted.")
+
+# Invalid input
+else:
+    print("Invalid option selected. Please run the program again.")
+
