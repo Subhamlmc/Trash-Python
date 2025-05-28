@@ -1,0 +1,28 @@
+#! /usr/bin/python3
+import re
+import string
+def test(pwd):
+    print(f"You have entered :{pwd}")
+    text=pwd
+    escaped_punct = re.escape(string.punctuation)
+    pattern1 = r"^[a-z]+$"                             
+    pattern2 = r"^[A-Z]+$"                             
+    pattern3 = r"^[A-Za-z]+$"                        
+    pattern4 = r"^[A-Za-z0-9]+$"                       
+    pattern5 = fr"^[A-Za-z0-9{escaped_punct}]+$"
+    if re.match(pattern1,text):
+       print("The password is too weak !")
+    elif re.match(pattern2,text):
+       print("The password is too weak !")
+    elif re.match(pattern3,text):
+       print("The password is good but not strong enough !")
+    elif re.match(pattern4,text):
+       print("The password is good to use but stronger is recommended !!")
+    elif re.match(pattern5,text):
+       print("The password is recommended to use !")
+
+def get_input():
+    userinput=input("Enter your password and the strength of your password will be determined :")
+    return userinput
+
+test(get_input())
