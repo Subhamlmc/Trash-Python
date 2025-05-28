@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 import os
 import time
+print("The list of taks will be saved in file.cap."
 print("This is an example of addressbook which can be used to store data like phonenumber, placestovisit, thingstolearn !")
 print("what you want to do ?")
 print("'a' for writing a record")
