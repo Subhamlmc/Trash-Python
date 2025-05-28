@@ -1,0 +1,19 @@
+#! /usr/bin/python3
+def test(userinput):
+    flist=[]
+    a=0
+    b=1
+    c=0
+    flist.append(a)
+    for i in range (userinput):
+       c=a+b
+       flist.append(c)
+       a=b
+       b=c
+    print(flist)
+
+
+def get_number():
+    userinput=int(input("Enter upto how many digits you want to display fibonacci numbers :"))
+    return userinput
+test(get_number())
