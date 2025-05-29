@@ -1,0 +1,30 @@
+#! /usr/bin/python3
+
+class Bank():
+    def __init__(self,name,balance):
+         self.name=name
+         self.balance=balance
+
+    def show_name(self):
+        print(f"The name of the person is {self.name}.")
+    
+    def default(self):
+        print(f"The balance of the person is {self.balance}.")
+
+    
+    def deposit(self,value):
+         self.balance+=value
+         print(f"The updated balance is {self.balance}.")
+    
+    def withdraw(self,value):
+        if value>= self.balance :
+             print("Insufficient funds")
+        else :
+            self.balance-=value
+            print(f"The updated balance is {self.balance}.")
+
+person1=Bank("IndraKantaPoudel",300)
+person2=Bank("DineshNeupane",500)
+
+person1.default()
+person1.deposit(200)
