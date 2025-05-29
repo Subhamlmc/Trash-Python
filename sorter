@@ -1,0 +1,21 @@
+#! /usr/bin/python3
+import time
+print("This is an example of sorter ")
+print("please wait")
+time.sleep(2)
+print("loading----")
+time.sleep(1)
+def sorter(lst):
+    lst.sort()
+    print(f"The sorted list is {lst}.")
+
+
+def get_input():
+    lst=[]
+    userinput=int(input("Enter how many elements you want to add :"))
+    for i in range (0, userinput):
+        x=input("Enter the things to store: ")
+        lst.append(x)
+
+    return lst
+sorter(get_input())
