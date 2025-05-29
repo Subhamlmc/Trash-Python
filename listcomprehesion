@@ -1,0 +1,8 @@
+#! /usr/bin/python3
+import time
+print("Hello")
+time.sleep(2)
+print("This is an example of list comprehension!")
+time.sleep(3)
+squared=[x^2 for x in range(13)]
+print(squared)
