@@ -3,7 +3,7 @@ import string
 import re
 
 def generate_password(length=8, parts=2):
-    """Generate a password by joining multiple random segments."""
+    #Generate a password by joining multiple random segments.
     characters = string.ascii_letters + string.digits + string.punctuation
     password = ""
 
