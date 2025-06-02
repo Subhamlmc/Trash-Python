@@ -1,0 +1,10 @@
+#! /usr/bin/python3
+import argparse
+parser=argparse.ArgumentParser(description="Enter 1st and last name of yours seperated by a space !!")
+parser.add_argument("Firstname", help="Enter your first name ")
+parser.add_argument("lastname",help="Enter your last name too :")
+args=parser.parse_args()
+
+
+fullname=(f"{args.Firstname},{args.lastname}")
+print(fullname)
