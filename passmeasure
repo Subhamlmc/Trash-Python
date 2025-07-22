@@ -1,29 +1,43 @@
-#! /usr/bin/python3
+#!/usr/bin/python3
 import re
 import string
-def test(pwd):
-    print(f"You have entered :{pwd}")
-    text=pwd
-    escaped_punct = re.escape(string.punctuation)
-    pattern1 = r"^[a-z]+$"                             
-    pattern2 = r"^[A-Z]+$"                             
-    pattern3 = r"^[A-Za-z]+$"                        
-    pattern4 = r"^[A-Za-z0-9]+$"                       
-    pattern5 = fr"^[A-Za-z0-9{escaped_punct}]+$"
-    if re.match(pattern1,text):
-       print("The password is too weak !")
-    elif re.match(pattern2,text):
-       print("The password is too weak !")
-    elif re.match(pattern3,text):
-       print("The password is good but not strong enough !")
-    elif re.match(pattern4,text):
-       print("The password is good to use but stronger is recommended !!")
-    elif re.match(pattern5,text):
-       print("The password is recommended to use !")
 
 def get_input():
-    userinput=input("Enter your password and the strength of your password will be determined :")
-    return userinput
+    return input(" Enter your password and we'll rate its strength: ")
 
-test(get_input())
-#this thing will provides password with strength value !!
+def password_strength(pwd):
+    print(f"\n📝 You entered: {pwd}")
+    escaped_punct = re.escape(string.punctuation)
+
+    # Length check
+    if len(pwd) < 8:
+        print(" Too short! Password must be at least 8 characters.")
+        return
+
+    # Check character categories
+    has_lower = bool(re.search(r"[a-z]", pwd))
+    has_upper = bool(re.search(r"[A-Z]", pwd))
+    has_digit = bool(re.search(r"\d", pwd))
+    has_punct = bool(re.search(fr"[{escaped_punct}]", pwd))
+
+    score = sum([has_lower, has_upper, has_digit, has_punct])
+
+    # Strength rating
+    if score == 4:
+        print(" Strong password  — You’re good to go!")
+    elif score == 3:
+        print(" Decent password — consider adding a missing character type.")
+    elif score == 2:
+        print(" Weak password — try mixing uppercase, lowercase, digits & symbols.")
+    else:
+        print(" Very weak — avoid using common letters/numbers only.")
+
+    # Feedback about what’s missing
+    print("\n🧪 Breakdown:")
+    print(f" - Lowercase letters: { if has_lower else }")
+    print(f" - Uppercase letters: { if has_upper else }")
+    print(f" - Digits: { if has_digit else }")
+    print(f" - Symbols: { if has_punct else }")
+
+password = get_input()
+password_strength(password)
